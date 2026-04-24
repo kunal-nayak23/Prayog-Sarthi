@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Prayog Sarthi</title>
+    <style>
+        @font-face {
+            font-family: Chana;
+            src: url(Fonts/chaney-ultraextended-webfont.ttf);
+        }
+        @font-face {
+            font-family: Bellefair;
+            src: url(Fonts/Bellefair-Regular.ttf);
+        }
+        @font-face {
+            font-family: hotel2;
+            src: url(Fonts/MontecatiniPro-NormaleLight.ttf);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bellefair', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-family: 'Chana', Arial;
+            font-size: 28px;
+            font-weight: bold;
+            color: rgb(250, 195, 8);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: rgb(250, 195, 8);
+        }
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-title {
+            font-size: 48px;
+            font-weight: bold;
+            font-family: 'Chana', Arial;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgb(250, 195, 8);
+            font-family: 'Bellefair', Arial;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            font-family: 'hotel2', Arial;
+            font-size: 18px;
+        }
+
+        .detail-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid rgb(250, 195, 8);
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Bellefair', Arial;
+        }
+
+        .detail-value {
+            color: #555;
+            word-wrap: break-word;
+        }
+
+        /* Matches Section */
+        .matches-section {
+            display: none;
+        }
+
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .match-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #2c3e50;
+            transition: transform 0.3s ease;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            border-top-color: rgb(250, 195, 8);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .match-title {
+            font-family: 'Bellefair', Arial;
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .match-info {
+            font-family: 'hotel2', Arial;
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .match-info strong {
+            color: #333;
+        }
+        
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background-color: rgba(250, 195, 8, 0.2);
+            color: #2c3e50;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Error / No Data State */
+        .message-box {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            display: none;
+        }
+
+        .message-box h2 {
+            font-family: 'Chana', Arial;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            background-color: rgb(250, 195, 8);
+            color: #2c3e50;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
+        }
+
+        /* Loading */
+        .loader {
+            text-align: center;
+            font-size: 24px;
+            color: #2c3e50;
+            padding: 50px;
+            font-family: 'Chana', Arial;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">PRAYOG SARTHI</a>
+            <nav>
+                <div class="nav-menu">
+                    <a href="again.html">Home</a>
+                    <a href="LandingPage.html">Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1 class="profile-title">Your Profile</h1>
+            <p class="subtitle" id="profileSubtitle">Loading your details...</p>
+        </div>
+
+        <div id="loader" class="loader">Fetching Data...</div>
+
+        <!-- No Email Found / Error Box -->
+        <div id="errorBox" class="message-box">
+            <h2>Profile Not Found</h2>
+            <p>We couldn't find your profile. You may need to register first.</p>
+            <a href="LandingPage.html" class="action-btn">Go to Registration</a>
+        </div>
+
+        <!-- Profile Details -->
+        <div id="profileCard" class="profile-card">
+            <h2 class="section-title">Personal Details</h2>
+            <div id="detailsGrid" class="details-grid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Matches Section -->
+        <div id="matchesSection" class="matches-section">
+            <h2 class="section-title" id="matchesTitle">Matching Profiles</h2>
+            <div id="matchesGrid" class="matches-grid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const email = localStorage.getItem('userEmail');
+            
+            const loader = document.getElementById('loader');
+            const errorBox = document.getElementById('errorBox');
+            const profileCard = document.getElementById('profileCard');
+            const detailsGrid = document.getElementById('detailsGrid');
+            const matchesSection = document.getElementById('matchesSection');
+            const matchesGrid = document.getElementById('matchesGrid');
+            const profileSubtitle = document.getElementById('profileSubtitle');
+            const matchesTitle = document.getElementById('matchesTitle');
+
+            if (!email) {
+                loader.style.display = 'none';
+                errorBox.style.display = 'block';
+                return;
+            }
+
+            try {
+                // 1. Fetch Profile
+                const profileRes = await fetch(`http://localhost:5000/api/profile?email=${encodeURIComponent(email)}`);
+                const profileData = await profileRes.json();
+
+                if (!profileData.success) {
+                    throw new Error('Profile not found');
+                }
+
+                // 2. Display Profile
+                loader.style.display = 'none';
+                profileCard.style.display = 'block';
+
+                const pType = profileData.type; // 'ngo' or 'volunteer'
+                const pData = profileData.data;
+
+                profileSubtitle.textContent = `Logged in as ${pData.email}`;
+
+                // Populate details based on type
+                if (pType === 'ngo') {
+                    detailsGrid.innerHTML = `
+                        <div class="detail-item"><span class="detail-label">NGO Name</span><span class="detail-value">${pData.ngoName}</span></div>
+                        <div class="detail-item"><span class="detail-label">Contact Person</span><span class="detail-value">${pData.contactPersonName}</span></div>
+                        <div class="detail-item"><span class="detail-label">Phone</span><span class="detail-value">${pData.phone}</span></div>
+                        <div class="detail-item"><span class="detail-label">Address</span><span class="detail-value">${pData.address}</span></div>
+                        <div class="detail-item"><span class="detail-label">Volunteers Needed</span><span class="detail-value">${pData.volunteersNeeded}</span></div>
+                        <div class="detail-item"><span class="detail-label">Category Requirements</span><span class="detail-value">${pData.categoryOfVolunteers}</span></div>
+                    `;
+                    matchesTitle.textContent = "Matching Volunteers";
+                } else {
+                    detailsGrid.innerHTML = `
+                        <div class="detail-item"><span class="detail-label">Full Name</span><span class="detail-value">${pData.fullName}</span></div>
+                        <div class="detail-item"><span class="detail-label">Age</span><span class="detail-value">${pData.age}</span></div>
+                        <div class="detail-item"><span class="detail-label">Phone</span><span class="detail-value">${pData.phone}</span></div>
+                        <div class="detail-item"><span class="detail-label">Skills</span><span class="detail-value">${pData.skills.join(', ')}</span></div>
+                        <div class="detail-item"><span class="detail-label">Disability Type</span><span class="detail-value">${pData.disability.join(', ')}</span></div>
+                        <div class="detail-item"><span class="detail-label">Availability</span><span class="detail-value">${pData.availability}</span></div>
+                    `;
+                    matchesTitle.textContent = "NGOs Looking for Your Skills";
+                }
+
+                // 3. Fetch Matches
+                matchesSection.style.display = 'block';
+                const matchesRes = await fetch(`http://localhost:5000/api/matches?email=${encodeURIComponent(email)}`);
+                const matchesData = await matchesRes.json();
+
+                if (matchesData.success && matchesData.matches.length > 0) {
+                    matchesGrid.innerHTML = ''; // clear grid
+                    matchesData.matches.forEach(match => {
+                        const card = document.createElement('div');
+                        card.className = 'match-card';
+                        
+                        if (pType === 'ngo') {
+                            // Match is a volunteer
+                            const skillsTags = (match.skills || []).map(s => `<span class="tag">${s}</span>`).join('');
+                            card.innerHTML = `
+                                <h3 class="match-title">${match.fullName}</h3>
+                                <div class="match-info"><strong>Age:</strong> ${match.age}</div>
+                                <div class="match-info"><strong>Contact:</strong> ${match.email}</div>
+                                <div class="match-info"><strong>Availability:</strong> ${match.availability}</div>
+                                <div class="tag-container">${skillsTags}</div>
+                            `;
+                        } else {
+                            // Match is an NGO
+                            card.innerHTML = `
+                                <h3 class="match-title">${match.ngoName}</h3>
+                                <div class="match-info"><strong>Needs:</strong> ${match.volunteersNeeded} volunteers</div>
+                                <div class="match-info"><strong>Contact:</strong> ${match.email}</div>
+                                <div class="match-info"><strong>Location:</strong> ${match.address}</div>
+                                <div class="tag-container"><span class="tag">${match.categoryOfVolunteers}</span></div>
+                            `;
+                        }
+                        matchesGrid.appendChild(card);
+                    });
+                } else {
+                    matchesGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No matches found yet. Check back later!</p>';
+                }
+
+            } catch (err) {
+                console.error(err);
+                loader.style.display = 'none';
+                errorBox.style.display = 'block';
+                errorBox.innerHTML = `
+                    <h2>Oops!</h2>
+                    <p>There was an error loading your profile or you haven't registered yet.</p>
+                    <a href="LandingPage.html" class="action-btn">Register Now</a>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

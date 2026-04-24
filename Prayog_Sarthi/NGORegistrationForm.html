@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NGO Registration - Prayog Sarthi</title>
+    <style>
+        @font-face {
+            font-family: Chana;
+            src: url(Fonts/chaney-ultraextended-webfont.ttf);
+        }
+        @font-face {
+            font-family: DinPro;
+            src: url(Fonts/DINPro-CondensedBold.ttf);
+        }
+        @font-face {
+            font-family: Bellefair;
+            src: url(Fonts/Bellefair-Regular.ttf);
+        }
+        @font-face {
+            font-family: hotel;
+            src: url(Fonts/MontecatiniPro-StrettoSemiBold.ttf);
+        }
+        @font-face {
+            font-family: hotel2;
+            src: url(Fonts/MontecatiniPro-NormaleLight.ttf);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bellefair', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-family: 'Chana', Arial;
+            font-size: 28px;
+            font-weight: bold;
+            color: rgb(250, 195, 8);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: rgb(250, 195, 8);
+        }
+
+        /* Registration Container */
+        .registration-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .registration-title {
+            font-size: 48px;
+            font-weight: bold;
+            font-family: 'Chana', Arial;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        /* Messages */
+        .success-message {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Form Styles */
+        .registration-form {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgb(250, 195, 8);
+            font-family: 'Bellefair', Arial;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 15px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'hotel2', Arial;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgb(250, 195, 8);
+            box-shadow: 0 0 8px rgba(250, 195, 8, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Two Column Layout */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .submit-btn,
+        .reset-btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Bellefair', Arial;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background-color: rgb(250, 195, 8);
+            color: #2c3e50;
+            box-shadow: 0 4px 12px rgba(250, 195, 8, 0.3);
+        }
+
+        .submit-btn:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(250, 195, 8, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0px);
+        }
+
+        .reset-btn {
+            background-color: #e8eaed;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+        }
+
+        .reset-btn:hover {
+            background-color: #d2d2d2;
+        }
+
+        /* Loading State */
+        .btn-loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Error Fields */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #dc3545;
+        }
+
+        .error-text {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-menu {
+                gap: 20px;
+            }
+
+            .registration-title {
+                font-size: 32px;
+            }
+
+            .registration-form {
+                padding: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 0 15px;
+            }
+
+            .nav-menu {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .registration-title {
+                font-size: 24px;
+            }
+
+            .registration-form {
+                padding: 16px;
+            }
+
+            .form-group label {
+                font-size: 14px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">PRAYOG SARTHI</a>
+            <nav>
+                <div class="nav-menu">
+                    <a href="again.html">Home</a>
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="registration-container">
+        <h1 class="registration-title">NGO Registration</h1>
+        <p class="subtitle">Join our network and make a difference</p>
+
+        <div id="successMessage" class="success-message" style="display: none;"></div>
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+        <form id="ngoRegistrationForm" class="registration-form">
+            <!-- Organization Details -->
+            <div class="form-section">
+                <h2 class="section-title">Organization Details</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ngoName">NGO Name *</label>
+                        <input type="text" id="ngoName" name="ngoName" placeholder="Enter organization name" required />
+                        <div class="error-text" id="ngoNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="organization@example.com" required />
+                        <div class="error-text" id="emailError"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 XXXXXXXXXX" required />
+                        <div class="error-text" id="phoneError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <input type="text" id="address" name="address" placeholder="Enter organization address" required />
+                        <div class="error-text" id="addressError"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+                <h2 class="section-title">Contact Person</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactPersonName">Contact Person Name *</label>
+                        <input type="text" id="contactPersonName" name="contactPersonName" placeholder="Full name of contact person" required />
+                        <div class="error-text" id="contactPersonNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPersonEmail">Contact Person Email *</label>
+                        <input type="email" id="contactPersonEmail" name="contactPersonEmail" placeholder="contact@example.com" required />
+                        <div class="error-text" id="contactPersonEmailError"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volunteer Information -->
+            <div class="form-section">
+                <h2 class="section-title">Volunteer Requirements</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteersNeeded">Number of Volunteers Needed *</label>
+                        <input type="number" id="volunteersNeeded" name="volunteersNeeded" placeholder="e.g., 5" min="1" required />
+                        <div class="error-text" id="volunteersNeededError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryOfVolunteers">Category of Volunteers *</label>
+                        <input type="text" id="categoryOfVolunteers" name="categoryOfVolunteers" placeholder="e.g., blind, deaf, physically disabled" required />
+                        <div class="error-text" id="categoryOfVolunteersError"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="volunteerAgeGroup">Age Group of Volunteers *</label>
+                        <select id="volunteerAgeGroup" name="volunteerAgeGroup" required>
+                            <option value="">Select age group</option>
+                            <option value="under-18">Under 18</option>
+                            <option value="18-20">18-20</option>
+                            <option value="20-25">20-25</option>
+                            <option value="25-plus">25+</option>
+                        </select>
+                        <div class="error-text" id="volunteerAgeGroupError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="experienceLevel">Volunteer Experience Level *</label>
+                        <select id="experienceLevel" name="experienceLevel" required>
+                            <option value="">Select experience level</option>
+                            <option value="0-1">0-1 years</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-plus">5+ years</option>
+                        </select>
+                        <div class="error-text" id="experienceLevelError"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="volunteerDescription">Description of Volunteer Positions & Skills *</label>
+                    <textarea id="volunteerDescription" name="volunteerDescription" placeholder="Describe the volunteer positions available and required skills..." required></textarea>
+                    <div class="error-text" id="volunteerDescriptionError"></div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Registration</button>
+                <button type="reset" class="reset-btn">Clear Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('ngoRegistrationForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Form submission handler
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Clear previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+
+            // Collect form data
+            const formData = {
+                ngoName: document.getElementById('ngoName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                address: document.getElementById('address').value.trim(),
+                contactPersonName: document.getElementById('contactPersonName').value.trim(),
+                contactPersonEmail: document.getElementById('contactPersonEmail').value.trim(),
+                volunteersNeeded: document.getElementById('volunteersNeeded').value,
+                categoryOfVolunteers: document.getElementById('categoryOfVolunteers').value.trim(),
+                volunteerAgeGroup: document.getElementById('volunteerAgeGroup').value,
+                experienceLevel: document.getElementById('experienceLevel').value,
+                volunteerDescription: document.getElementById('volunteerDescription').value.trim()
+            };
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.classList.add('btn-loading');
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Send data to backend
+                const response = await fetch('http://localhost:5000/api/register-ngo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                // Show success message
+                successMessage.textContent = 'Registration successful! We will contact you soon.';
+                successMessage.style.display = 'block';
+
+                // Save email to localStorage for profile page
+                localStorage.setItem('userEmail', formData.email);
+                localStorage.setItem('userType', 'ngo');
+
+                // Reset form
+                form.reset();
+                clearErrors();
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessage.textContent = 'Registration failed. Please try again or contact support.';
+                errorMessage.style.display = 'block';
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.textContent = 'Submit Registration';
+            }
+        });
+
+        // Form validation
+        function validateForm() {
+            clearErrors();
+            let isValid = true;
+
+            // Validate NGO Name
+            const ngoName = document.getElementById('ngoName').value.trim();
+            if (!ngoName || ngoName.length < 3) {
+                showError('ngoNameError', 'NGO name must be at least 3 characters');
+                isValid = false;
+            }
+
+            // Validate Email
+            const email = document.getElementById('email').value.trim();
+            if (!validateEmail(email)) {
+                showError('emailError', 'Please enter a valid email');
+                isValid = false;
+            }
+
+            // Validate Phone
+            const phone = document.getElementById('phone').value.trim();
+            if (!validatePhone(phone)) {
+                showError('phoneError', 'Please enter a valid phone number');
+                isValid = false;
+            }
+
+            // Validate Address
+            const address = document.getElementById('address').value.trim();
+            if (!address || address.length < 5) {
+                showError('addressError', 'Please enter a valid address');
+                isValid = false;
+            }
+
+            // Validate Contact Person Name
+            const contactPersonName = document.getElementById('contactPersonName').value.trim();
+            if (!contactPersonName || contactPersonName.length < 2) {
+                showError('contactPersonNameError', 'Contact person name is required');
+                isValid = false;
+            }
+
+            // Validate Contact Person Email
+            const contactPersonEmail = document.getElementById('contactPersonEmail').value.trim();
+            if (!validateEmail(contactPersonEmail)) {
+                showError('contactPersonEmailError', 'Please enter a valid email');
+                isValid = false;
+            }
+
+            // Validate Volunteers Needed
+            const volunteersNeeded = document.getElementById('volunteersNeeded').value;
+            if (!volunteersNeeded || volunteersNeeded < 1) {
+                showError('volunteersNeededError', 'Please enter number of volunteers needed');
+                isValid = false;
+            }
+
+            // Validate Category
+            const categoryOfVolunteers = document.getElementById('categoryOfVolunteers').value.trim();
+            if (!categoryOfVolunteers) {
+                showError('categoryOfVolunteersError', 'Please specify volunteer categories');
+                isValid = false;
+            }
+
+            // Validate Age Group
+            const volunteerAgeGroup = document.getElementById('volunteerAgeGroup').value;
+            if (!volunteerAgeGroup) {
+                showError('volunteerAgeGroupError', 'Please select volunteer age group');
+                isValid = false;
+            }
+
+            // Validate Experience Level
+            const experienceLevel = document.getElementById('experienceLevel').value;
+            if (!experienceLevel) {
+                showError('experienceLevelError', 'Please select experience level');
+                isValid = false;
+            }
+
+            // Validate Description
+            const volunteerDescription = document.getElementById('volunteerDescription').value.trim();
+            if (!volunteerDescription || volunteerDescription.length < 10) {
+                showError('volunteerDescriptionError', 'Please provide at least 10 characters in description');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Phone validation
+        function validatePhone(phone) {
+            const re = /^[\d\s\-\+\(\)]{10,}$/;
+            return re.test(phone.replace(/\s/g, ''));
+        }
+
+        // Show error message
+        function showError(fieldId, message) {
+            const errorElement = document.getElementById(fieldId);
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.parentElement.querySelector('input, select, textarea')?.classList.add('error');
+            }
+        }
+
+        // Clear all errors
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-text');
+            errorElements.forEach(el => el.textContent = '');
+            const inputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+            inputs.forEach(el => el.classList.remove('error'));
+        }
+
+        // Clear errors on input focus
+        document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.classList.remove('error');
+                const errorId = this.id + 'Error';
+                const errorElement = document.getElementById(errorId);
+                if (errorElement) {
+                    errorElement.textContent = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

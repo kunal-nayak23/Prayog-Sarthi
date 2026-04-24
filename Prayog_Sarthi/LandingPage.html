@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prayog Sarthi - Landing Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        @font-face {
+            font-family: Chana;
+            src: url(Fonts/chaney-ultraextended-webfont.ttf);
+        }
+        @font-face {
+            font-family: Bellefair;
+            src: url(Fonts/Bellefair-Regular.ttf);
+        }
+        @font-face {
+            font-family: hotel2;
+            src: url(Fonts/MontecatiniPro-NormaleLight.ttf);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bellefair', Arial, sans-serif;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            height: 50px;
+            font-family: 'Chana', Arial;
+            font-size: 28px;
+            font-weight: bold;
+            color: rgb(250, 195, 8);
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            font-family: 'Bellefair', Arial;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: rgb(250, 195, 8);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        /* Left Section */
+        .left-section {
+            width: 50%;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-section-bg {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(250, 195, 8, 0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        .heading {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-family: 'Chana', Arial;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gold-accent {
+            color: rgb(250, 195, 8);
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-top: 30px;
+            font-family: 'hotel2', Arial;
+            position: relative;
+            z-index: 2;
+            opacity: 0.95;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding-top: 40px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Right Section */
+        .right-section {
+            width: 50%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eaed 100%);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .call-to-action {
+            width: 100%;
+            max-width: 480px;
+            background-color: rgba(250, 195, 8, 0.15);
+            border-radius: 20px;
+            padding: 40px 35px;
+            border: 2px solid rgb(250, 195, 8);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .cta-heading {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            font-family: 'Bellefair', Arial;
+        }
+
+        .cta-text {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 16px;
+            font-family: 'hotel2', Arial;
+            line-height: 1.6;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .option-button {
+            background-color: #2c3e50;
+            color: white;
+            border: 2px solid transparent;
+            padding: 16px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Bellefair', Arial;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
+        }
+
+        .option-button:hover {
+            background-color: rgb(250, 195, 8);
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(250, 195, 8, 0.3);
+        }
+
+        .option-button:active {
+            transform: translateY(0px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .left-section,
+            .right-section {
+                width: 100%;
+                padding: 60px 40px;
+            }
+
+            .main-content {
+                flex-direction: column;
+            }
+
+            .heading {
+                font-size: 48px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .nav {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .left-section,
+            .right-section {
+                padding: 40px 20px;
+            }
+
+            .heading {
+                font-size: 36px;
+            }
+
+            .description {
+                font-size: 14px;
+                margin-top: 20px;
+            }
+
+            .call-to-action {
+                padding: 30px 25px;
+            }
+
+            .cta-heading {
+                font-size: 24px;
+            }
+
+            .cta-text {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .option-button {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                gap: 10px;
+                flex-direction: column;
+            }
+
+            .heading {
+                font-size: 28px;
+            }
+
+            .left-section,
+            .right-section {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <!-- Navigation Bar -->
+        <header class="header">
+            <div class="nav-container">
+                <a href="/" class="logo">PRAYOG SARTHI</a>
+                <nav class="nav">
+                    <a href="again.html" class="nav-link">Home</a>
+                    <a href="#ngos" class="nav-link">NGOs</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Section -->
+            <section class="left-section">
+                <div class="left-section-bg"></div>
+                <h1 class="heading">
+                    Welcome to<br />
+                    <span class="gold-accent">Prayog Sarthi</span>
+                    <span> 🚀</span>
+                </h1>
+                <p class="description">
+                    Turn your innovative ideas into reality! Seamlessly book testing appointments for your groundbreaking projects with NGOs. Save time, simplify processes, and make a bigger impact on society.
+                </p>
+                <div class="footer">
+                    <p>© 2025 Prayog Sarthi. All rights reserved.</p>
+                </div>
+            </section>
+
+            <!-- Right Section -->
+            <section class="right-section">
+                <div class="call-to-action">
+                    <h2 class="cta-heading">
+                        Get Started 🤝
+                    </h2>
+                    <p class="cta-text">
+                        Choose your role and join our innovative testing ecosystem today.
+                    </p>
+                    <div class="button-grid">
+                        <button class="option-button" onclick="handleNGOClick()">
+                            NGO
+                        </button>
+                        <button class="option-button" onclick="handleCompanyClick()">
+                            Volunteer
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function handleNGOClick() {
+            window.location.href = 'NGORegistrationForm.html';
+        }
+
+        function handleCompanyClick() {
+            window.location.href = 'VolunteerRegistrationForm.html';
+        }
+    </script>
+</body>
+</html>

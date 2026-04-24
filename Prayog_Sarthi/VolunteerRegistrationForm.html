@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteer Registration - Prayog Sarthi</title>
+    <style>
+        @font-face {
+            font-family: Chana;
+            src: url(Fonts/chaney-ultraextended-webfont.ttf);
+        }
+        @font-face {
+            font-family: Bellefair;
+            src: url(Fonts/Bellefair-Regular.ttf);
+        }
+        @font-face {
+            font-family: hotel2;
+            src: url(Fonts/MontecatiniPro-NormaleLight.ttf);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bellefair', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-family: 'Chana', Arial;
+            font-size: 28px;
+            font-weight: bold;
+            color: rgb(250, 195, 8);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: rgb(250, 195, 8);
+        }
+
+        /* Registration Container */
+        .registration-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .registration-title {
+            font-size: 48px;
+            font-weight: bold;
+            font-family: 'Chana', Arial;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        /* Messages */
+        .success-message {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Form Styles */
+        .volunteer-form {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgb(250, 195, 8);
+            font-family: 'Bellefair', Arial;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 15px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'hotel2', Arial;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgb(250, 195, 8);
+            box-shadow: 0 0 8px rgba(250, 195, 8, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Checkbox and Radio Styles */
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-item input[type="checkbox"],
+        .radio-item input[type="radio"] {
+            width: auto;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+            accent-color: rgb(250, 195, 8);
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            margin: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        /* Two Column Layout */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .submit-btn,
+        .reset-btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Bellefair', Arial;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background-color: rgb(250, 195, 8);
+            color: #2c3e50;
+            box-shadow: 0 4px 12px rgba(250, 195, 8, 0.3);
+        }
+
+        .submit-btn:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(250, 195, 8, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0px);
+        }
+
+        .reset-btn {
+            background-color: #e8eaed;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+        }
+
+        .reset-btn:hover {
+            background-color: #d2d2d2;
+        }
+
+        /* Loading State */
+        .btn-loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Error Fields */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #dc3545;
+        }
+
+        .error-text {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-menu {
+                gap: 20px;
+            }
+
+            .registration-title {
+                font-size: 32px;
+            }
+
+            .volunteer-form {
+                padding: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 0 15px;
+            }
+
+            .nav-menu {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .registration-title {
+                font-size: 24px;
+            }
+
+            .volunteer-form {
+                padding: 16px;
+            }
+
+            .form-group label {
+                font-size: 14px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">PRAYOG SARTHI</a>
+            <nav>
+                <div class="nav-menu">
+                    <a href="again.html">Home</a>
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="registration-container">
+        <h1 class="registration-title">Volunteer Registration</h1>
+        <p class="subtitle">Join us and make a difference in the lives of people with disabilities</p>
+
+        <div id="successMessage" class="success-message" style="display: none;"></div>
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+        <form id="volunteerRegistrationForm" class="volunteer-form">
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h2 class="section-title">Personal Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required />
+                        <div class="error-text" id="fullNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+                        <div class="error-text" id="emailError"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Age *</label>
+                        <input type="number" id="age" name="age" placeholder="Enter your age" min="1" max="120" required />
+                        <div class="error-text" id="ageError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 XXXXXXXXXX" required />
+                        <div class="error-text" id="phoneError"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your residential address" required />
+                    <div class="error-text" id="addressError"></div>
+                </div>
+            </div>
+
+            <!-- Disability Information -->
+            <div class="form-section">
+                <h2 class="section-title">Disability Information</h2>
+                <div class="form-group">
+                    <label>Type of Disability *</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="visually-impaired" name="disability" value="visually-impaired" />
+                            <label for="visually-impaired">Visually Impaired (Blind/Low Vision)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="deaf" name="disability" value="deaf" />
+                            <label for="deaf">Deaf/Hard of Hearing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="physically-disabled" name="disability" value="physically-disabled" />
+                            <label for="physically-disabled">Physically Disabled</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="intellectual" name="disability" value="intellectual" />
+                            <label for="intellectual">Intellectual/Developmental Disability</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mental-health" name="disability" value="mental-health" />
+                            <label for="mental-health">Mental Health Condition</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="neurological" name="disability" value="neurological" />
+                            <label for="neurological">Neurological Condition</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="multiple" name="disability" value="multiple" />
+                            <label for="multiple">Multiple Disabilities</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="other-disability" name="disability" value="other" />
+                            <label for="other-disability">Other</label>
+                        </div>
+                    </div>
+                    <div class="error-text" id="disabilityError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="disabilityDetails">Please describe your disability or condition (Optional)</label>
+                    <textarea id="disabilityDetails" name="disabilityDetails" placeholder="Share any additional details about your disability..."></textarea>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="form-section">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <div class="form-group">
+                    <label>Select your skills (Check all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="communication" name="skills" value="communication" />
+                            <label for="communication">Communication</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="technical" name="skills" value="technical" />
+                            <label for="technical">Technical/IT Skills</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="teaching" name="skills" value="teaching" />
+                            <label for="teaching">Teaching/Tutoring</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="counseling" name="skills" value="counseling" />
+                            <label for="counseling">Counseling/Mentoring</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="creative" name="skills" value="creative" />
+                            <label for="creative">Creative/Arts</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sports" name="skills" value="sports" />
+                            <label for="sports">Sports/Physical Activities</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="music" name="skills" value="music" />
+                            <label for="music">Music/Performing Arts</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="leadership" name="skills" value="leadership" />
+                            <label for="leadership">Leadership</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="no-specific" name="skills" value="no-specific" />
+                            <label for="no-specific">No Specific Skills (Willing to Learn)</label>
+                        </div>
+                    </div>
+                    <div class="error-text" id="skillsError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="skillsDescription">Describe your skills in detail (Optional)</label>
+                    <textarea id="skillsDescription" name="skillsDescription" placeholder="Tell us more about your expertise and experience..."></textarea>
+                </div>
+            </div>
+
+            <!-- Challenges & Support -->
+            <div class="form-section">
+                <h2 class="section-title">Challenges & Support Needs</h2>
+                <div class="form-group">
+                    <label>What challenges do you face? (Check all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mobility" name="challenges" value="mobility" />
+                            <label for="mobility">Mobility Challenges</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="communication-challenge" name="challenges" value="communication-challenge" />
+                            <label for="communication-challenge">Communication Barriers</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="accessibility" name="challenges" value="accessibility" />
+                            <label for="accessibility">Accessibility Issues</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="discrimination" name="challenges" value="discrimination" />
+                            <label for="discrimination">Social Discrimination</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="transportation" name="challenges" value="transportation" />
+                            <label for="transportation">Transportation Difficulties</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="financial" name="challenges" value="financial" />
+                            <label for="financial">Financial Constraints</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="health" name="challenges" value="health" />
+                            <label for="health">Health Management Issues</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="other-challenge" name="challenges" value="other" />
+                            <label for="other-challenge">Other</label>
+                        </div>
+                    </div>
+                    <div class="error-text" id="challengesError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="supportNeeds">What support do you need to volunteer effectively? *</label>
+                    <textarea id="supportNeeds" name="supportNeeds" placeholder="Describe any accommodations or support you need..." required></textarea>
+                    <div class="error-text" id="supportNeedsError"></div>
+                </div>
+            </div>
+
+            
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="submit" class="submit-btn" id="submitBtn">Register as Volunteer</button>
+                <button type="reset" class="reset-btn">Clear Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('volunteerRegistrationForm');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Form submission handler
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Clear previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+
+            // Collect form data
+            const formData = {
+                fullName: document.getElementById('fullName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                age: document.getElementById('age').value,
+                phone: document.getElementById('phone').value.trim(),
+                address: document.getElementById('address').value.trim(),
+                disability: getCheckedValues('disability'),
+                disabilityDetails: document.getElementById('disabilityDetails').value.trim(),
+                skills: getCheckedValues('skills'),
+                skillsDescription: document.getElementById('skillsDescription').value.trim(),
+                challenges: getCheckedValues('challenges'),
+                supportNeeds: document.getElementById('supportNeeds').value.trim(),
+                availability: document.getElementById('availability').value,
+                preferredTime: document.getElementById('preferredTime').value,
+                motivation: document.getElementById('motivation').value.trim()
+            };
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.classList.add('btn-loading');
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Send data to backend
+                const response = await fetch('http://localhost:5000/api/register-volunteer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                // Show success message
+                successMessage.textContent = 'Registration successful! Thank you for volunteering with us. We will contact you soon.';
+                successMessage.style.display = 'block';
+
+                // Save email to localStorage for profile page
+                localStorage.setItem('userEmail', formData.email);
+                localStorage.setItem('userType', 'volunteer');
+
+                // Reset form
+                form.reset();
+                clearErrors();
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessage.textContent = 'Registration failed. Please try again or contact support.';
+                errorMessage.style.display = 'block';
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.textContent = 'Register as Volunteer';
+            }
+        });
+
+        // Get checked values from checkboxes
+        function getCheckedValues(name) {
+            const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        // Form validation
+        function validateForm() {
+            clearErrors();
+            let isValid = true;
+
+            // Validate Full Name
+            const fullName = document.getElementById('fullName').value.trim();
+            if (!fullName || fullName.length < 2) {
+                showError('fullNameError', 'Please enter a valid name');
+                isValid = false;
+            }
+
+            // Validate Email
+            const email = document.getElementById('email').value.trim();
+            if (!validateEmail(email)) {
+                showError('emailError', 'Please enter a valid email');
+                isValid = false;
+            }
+
+            // Validate Age
+            const age = document.getElementById('age').value;
+            if (!age || age < 1 || age > 120) {
+                showError('ageError', 'Please enter a valid age');
+                isValid = false;
+            }
+
+            // Validate Phone
+            const phone = document.getElementById('phone').value.trim();
+            if (!validatePhone(phone)) {
+                showError('phoneError', 'Please enter a valid phone number');
+                isValid = false;
+            }
+
+            // Validate Address
+            const address = document.getElementById('address').value.trim();
+            if (!address || address.length < 5) {
+                showError('addressError', 'Please enter a valid address');
+                isValid = false;
+            }
+
+            // Validate Disability
+            const disability = getCheckedValues('disability');
+            if (disability.length === 0) {
+                showError('disabilityError', 'Please select at least one disability type');
+                isValid = false;
+            }
+
+            // Validate Skills
+            const skills = getCheckedValues('skills');
+            if (skills.length === 0) {
+                showError('skillsError', 'Please select at least one skill');
+                isValid = false;
+            }
+
+            // Validate Challenges
+            const challenges = getCheckedValues('challenges');
+            if (challenges.length === 0) {
+                showError('challengesError', 'Please select at least one challenge or indicate none');
+                isValid = false;
+            }
+
+            // Validate Support Needs
+            const supportNeeds = document.getElementById('supportNeeds').value.trim();
+            if (!supportNeeds || supportNeeds.length < 10) {
+                showError('supportNeedsError', 'Please describe your support needs (at least 10 characters)');
+                isValid = false;
+            }
+
+            // Validate Availability
+            const availability = document.getElementById('availability').value;
+            if (!availability) {
+                showError('availabilityError', 'Please select your availability');
+                isValid = false;
+            }
+
+            // Validate Preferred Time
+            const preferredTime = document.getElementById('preferredTime').value;
+            if (!preferredTime) {
+                showError('preferredTimeError', 'Please select your preferred volunteer time');
+                isValid = false;
+            }
+
+            // Validate Motivation
+            const motivation = document.getElementById('motivation').value.trim();
+            if (!motivation || motivation.length < 10) {
+                showError('motivationError', 'Please share your motivation (at least 10 characters)');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Phone validation
+        function validatePhone(phone) {
+            const re = /^[\d\s\-\+\(\)]{10,}$/;
+            return re.test(phone.replace(/\s/g, ''));
+        }
+
+        // Show error message
+        function showError(fieldId, message) {
+            const errorElement = document.getElementById(fieldId);
+            if (errorElement) {
+                errorElement.textContent = message;
+            }
+        }
+
+        // Clear all errors
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-text');
+            errorElements.forEach(el => el.textContent = '');
+            const inputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+            inputs.forEach(el => el.classList.remove('error'));
+        }
+
+        // Clear errors on input focus
+        document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.classList.remove('error');
+                const errorId = this.id + 'Error';
+                const errorElement = document.getElementById(errorId);
+                if (errorElement) {
+                    errorElement.textContent = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
