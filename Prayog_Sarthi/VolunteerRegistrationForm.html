@@ -549,7 +549,39 @@
                 </div>
             </div>
 
-            
+            <!-- Availability & Motivation -->
+            <div class="form-section">
+                <h2 class="section-title">Availability & Motivation</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="availability">Availability *</label>
+                        <select id="availability" name="availability" required>
+                            <option value="">Select your availability</option>
+                            <option value="weekdays">Weekdays</option>
+                            <option value="weekends">Weekends</option>
+                            <option value="both">Both Weekdays & Weekends</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                        <div class="error-text" id="availabilityError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredTime">Preferred Time *</label>
+                        <select id="preferredTime" name="preferredTime" required>
+                            <option value="">Select preferred time</option>
+                            <option value="morning">Morning (6AM - 12PM)</option>
+                            <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                            <option value="evening">Evening (5PM - 9PM)</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                        <div class="error-text" id="preferredTimeError"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="motivation">What motivates you to volunteer? *</label>
+                    <textarea id="motivation" name="motivation" placeholder="Share what drives you to volunteer and make a difference..." required></textarea>
+                    <div class="error-text" id="motivationError"></div>
+                </div>
+            </div>
 
             <!-- Form Actions -->
             <div class="form-actions">
