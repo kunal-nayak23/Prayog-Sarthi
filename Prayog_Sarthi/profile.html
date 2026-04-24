@@ -328,7 +328,7 @@
 
             try {
                 // 1. Fetch Profile
-                const profileRes = await fetch(`http://localhost:5000/api/profile?email=${encodeURIComponent(email)}`);
+                const profileRes = await fetch(`/api/profile?email=${encodeURIComponent(email)}`);
                 const profileData = await profileRes.json();
 
                 if (!profileData.success) {
@@ -369,7 +369,7 @@
 
                 // 3. Fetch Matches
                 matchesSection.style.display = 'block';
-                const matchesRes = await fetch(`http://localhost:5000/api/matches?email=${encodeURIComponent(email)}`);
+                const matchesRes = await fetch(`/api/matches?email=${encodeURIComponent(email)}`);
                 const matchesData = await matchesRes.json();
 
                 if (matchesData.success && matchesData.matches.length > 0) {
